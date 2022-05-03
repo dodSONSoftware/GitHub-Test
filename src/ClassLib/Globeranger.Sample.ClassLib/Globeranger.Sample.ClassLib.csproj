@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Globeranger.Sample.ClassLib</RootNamespace>
+
+    <PackageId>Globeranger.Sample.ClassLib</PackageId>
+
+    <IsPackable>true</IsPackable>
+    <Title>Globeranger.Sample.ClassLib Library</Title>
+    <PackageId>Globeranger.Sample.ClassLib</PackageId>
+    <VersionPrefix>35.0.0</VersionPrefix>
+    <VersionSuffix>beta-1</VersionSuffix>
+    <Authors>Globeranger Corp.</Authors>
+    <Company>Globeranger Corp.</Company>
+    <Product>Globeranger.Core</Product>
+    <Copyright>Copyright 2022, Globeranger Corp.</Copyright>
+    <LicencingUrl>https://www.globeranger.com/contact-us/</LicencingUrl>
+    <Description>The Globeranger.Sample.ClassLib library provides an example of a class library and it's unit tests project.</Description>
+    <PackageTags>Globeranger;Sample;ClassLib</PackageTags>
+  </PropertyGroup>
+</Project>

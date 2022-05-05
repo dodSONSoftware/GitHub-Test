@@ -9,7 +9,7 @@ namespace Globeranger.Sample.ClassLib {
 
         // ctor
 
-        public Calculator ( ) { }
+        private Calculator ( ) { }
 
 
 

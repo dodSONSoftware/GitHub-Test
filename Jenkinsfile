@@ -2,23 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage("Build") {
-            steps {                
-                dir ("${env.WORKSPACE}/src/ClassLib/Globeranger.Sample.ClassLib") {
-                    // clean, restore and build -> {workspace}/publish
-                    sh "dotnet clean"
-                    sh "dotnet restore"
-                    sh "dotnet build -c Release"
-                }
-            }
-        }
-
-        stage("Unit Test") {
+        stage("Checkout") {
             steps {
-                // run the unit tests    
-                dir ("${env.WORKSPACE}/src/ClassLib/Globeranger.Sample.ClassLib.UnitTests") {
-                    sh "dotnet test"
-                }
+                // This command will clone the master branch of the given repository (url)
+                //      using the GRSampleClassLib credentials added to the Jenkins Git plugin
+                git url: "https://github.com/dodSONSoftware/GitHub-Test",
+                    branch: "main",
+                    credentialsId: "dodSONSoftware-GitHub"
             }
         }
 
@@ -36,6 +26,29 @@ pipeline {
                             -Dsonar.java.binaries=build/classes/java/ \
                             -Dsonar.projectKey=$PROJECT_NAME \
                             -Dsonar.sources=.'''
+                }
+            }
+        }
+
+        stage("Build") {
+            steps {                
+                dir ("${env.WORKSPACE}/src/ClassLib/Globeranger.Sample.ClassLib") {
+
+                    sh "cat ICalculator.cs"
+
+                    // clean, restore and build -> {workspace}/publish
+                    sh "dotnet clean"
+                    sh "dotnet restore"
+                    sh "dotnet build -c Release"
+                }
+            }
+        }
+
+        stage("Unit Test") {
+            steps {
+                // run the unit tests    
+                dir ("${env.WORKSPACE}/src/ClassLib/Globeranger.Sample.ClassLib.UnitTests") {
+                    sh "dotnet test"
                 }
             }
         }

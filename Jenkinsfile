@@ -25,6 +25,8 @@ pipeline {
         stage("SonarCloud Scan") {
             environment {
                 SCANNER_HOME = tool 'SonarQubeScanner'
+
+                // must provide these values
                 ORGANIZATION = "dodsonsoftware"
                 PROJECT_NAME = "GitHub-Test"
             }

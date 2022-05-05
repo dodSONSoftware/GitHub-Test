@@ -9,7 +9,7 @@ namespace Globeranger.Sample.ClassLib {
 
         // ctor
 
-        private Calculator ( ) { }
+        public Calculator ( ) { }
 
 
 
@@ -23,6 +23,6 @@ namespace Globeranger.Sample.ClassLib {
 
         public double Divide ( double a, double b ) => a / b;
 
-        //public double Modulus ( double a, double b ) => a % b;
+        public double Modulus ( double a, double b ) => a % b;
     }
 }

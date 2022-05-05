@@ -5,6 +5,9 @@ pipeline {
         stage("Build") {
             steps {                
                 dir ("${env.WORKSPACE}/src/ClassLib/Globeranger.Sample.ClassLib") {
+
+                    sh "cat ICalculator.cs"
+
                     // clean, restore and build -> {workspace}/publish
                     sh "dotnet clean"
                     sh "dotnet restore"
@@ -18,6 +21,24 @@ pipeline {
                 // run the unit tests    
                 dir ("${env.WORKSPACE}/src/ClassLib/Globeranger.Sample.ClassLib.UnitTests") {
                     sh "dotnet test"
+                }
+            }
+        }
+
+        stage("SonarCloud Scan") {
+            environment {
+                SCANNER_HOME = tool 'SonarQubeScanner'
+
+                // must provide these values
+                ORGANIZATION = "dodsonsoftware"
+                PROJECT_NAME = "GitHub-Test"
+            }
+            steps {
+                withSonarQubeEnv('Sonarcloud-Server') {
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+                            -Dsonar.java.binaries=build/classes/java/ \
+                            -Dsonar.projectKey=$PROJECT_NAME \
+                            -Dsonar.sources=.'''
                 }
             }
         }

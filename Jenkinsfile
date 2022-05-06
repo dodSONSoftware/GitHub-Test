@@ -5,6 +5,9 @@ pipeline {
         stage("Build") {
             steps {                
                 dir ("${env.WORKSPACE}/src/ClassLib/Globeranger.Sample.ClassLib") {
+
+                    sh "cat Calculator.cs"
+
                     // clean, restore and build -> {workspace}/publish
                     sh "dotnet clean"
                     sh "dotnet restore"
